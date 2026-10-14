@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0B0D11" />
+    <title>Orb Rush</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      html, body { margin: 0; height: 100%; overflow: hidden; background: #0B0D11; color: #EEF1F6; }
+      /* The backdrop lives in CSS so it fills any screen; the game canvas is transparent over it. */
+      body::before, body::after { content: ""; position: fixed; inset: 0; pointer-events: none; }
+      body::before {
+        background:
+          radial-gradient(55vmax 55vmax at 12% 8%, rgba(63, 208, 201, 0.13), transparent 62%),
+          radial-gradient(50vmax 50vmax at 92% 96%, rgba(244, 192, 74, 0.10), transparent 60%),
+          radial-gradient(130% 100% at 50% 45%, transparent 50%, rgba(0, 0, 0, 0.55));
+      }
+      body::after {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1.4px);
+        background-size: 30px 30px;
+        -webkit-mask-image: radial-gradient(80% 70% at 50% 45%, #000, transparent);
+        mask-image: radial-gradient(80% 70% at 50% 45%, #000, transparent);
+      }
+      /* Anything marked hidden stays hidden (e.g. the phone field on the demo sandbox). */
+      [hidden] { display: none !important; }
+      /* The INVO UI kit mounts inside #game, over the canvas. */
+      #game { position: relative; z-index: 1; width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div id="game"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
