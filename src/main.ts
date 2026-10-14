@@ -33,3 +33,4 @@ const game = new Phaser.Game({
 const invo = installInvo(game);
 
 celebrateFirstSale(invo.economy, () => invo.ui);
+

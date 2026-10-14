@@ -26,7 +26,15 @@ export class MainMenu extends Phaser.Scene {
     const orb = new OrbView(this, VIEW.cx, 680);
 
     button(this, VIEW.cx, 1000, "Play", () => go(this, "Game"), { variant: "gold", icon: "▶" });
-    button(this, VIEW.cx, 1116, "Shop", () => go(this, "Shop"));
+    button(this, VIEW.cx - 105, 1116, "Shop", () => go(this, "Shop"), { width: 190 });
+    // INVO: transfers and sends between players, in INVO's own dialog. On with the demo key
+    // (between players of this project) and with a production key; "live only" otherwise.
+    button(this, VIEW.cx + 105, 1116, "Transfer", () => invo.ui?.openTransfers(), { width: 190, icon: "⇄" });
+    void invo.economy.transferStatus().then((s) => {
+      if (!s.enabled && this.scene.isActive()) {
+        label(this, VIEW.cx + 105, 1172, "LIVE ONLY", 15, PALETTE.css.gold, "800").setLetterSpacing(3).setAlpha(0.85);
+      }
+    });
 
     let status: ReturnType<typeof chip> | null = null;
     const refresh = () => {
@@ -35,9 +43,9 @@ export class MainMenu extends Phaser.Scene {
       const best = readBest();
       if (invo.economy.player) {
         const text = best ? `${invo.economy.player.name} · best round ${best}` : `Signed in as ${invo.economy.player.name}`;
-        status = chip(this, VIEW.cx, 1222, text, PALETTE.css.text, PALETTE.teal);
+        status = chip(this, VIEW.cx, 1232, text, PALETTE.css.text, PALETTE.teal);
       } else {
-        status = chip(this, VIEW.cx, 1222, "Sign in to keep your coins", PALETTE.css.gold, PALETTE.gold);
+        status = chip(this, VIEW.cx, 1232, "Sign in to keep your coins", PALETTE.css.gold, PALETTE.gold);
         status.container.setInteractive({ useHandCursor: true }).on("pointerup", () => invo.ui?.openSignIn());
       }
     };
