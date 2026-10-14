@@ -1,5 +1,7 @@
 # Orb Rush: a Phaser 4 starter with INVO built in
 
+[![Open in Replit](https://replit.com/badge?caption=Open%20in%20Replit)](https://replit.com/github.com/Invo-Technologies/invo-phaser-starter)
+
 A minimal, forkable 2D idle/clicker in **Phaser 4 + TypeScript** with INVO's game economy already wired in:
 
 - a wallet in two currencies
