@@ -31,6 +31,10 @@ export class Shop extends Phaser.Scene {
     orb.setScale(0.72);
 
     button(this, VIEW.cx, 1060, "Open shop", () => invo.ui?.openShop(), { variant: "gold" });
+    // Arriving here opens INVO's shop straight away; closing it leaves this loadout behind it.
+    this.time.delayedCall(320, () => {
+      if (this.scene.isActive()) invo.ui?.openShop();
+    });
     button(this, VIEW.cx - 105, 1176, "Get Gems", () => invo.ui?.openBuyCurrency(), { width: 190 });
     button(this, VIEW.cx + 105, 1176, "Back", () => go(this, "MainMenu"), { width: 190 });
 
